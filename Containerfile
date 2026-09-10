@@ -1,7 +1,7 @@
 ###############################################################################
 # PROJECT NAME CONFIGURATION
 ###############################################################################
-# Name: finpilot
+# Name: turquoise-future
 #
 # IMPORTANT: Change "finpilot" above to your desired project name.
 # This name is restated in several files that cannot read each other. The
@@ -54,8 +54,8 @@ FROM quay.io/fedora-ostree-desktops/silverblue:44@sha256:c05886ff0e2ebfa27b842dc
 
 # Image identity - these define how bootc, fastfetch, and the ublue ecosystem
 # recognize your image. Change these to match your project name.
-ARG IMAGE_NAME="finpilot"
-ARG IMAGE_VENDOR="projectbluefin"
+ARG IMAGE_NAME="turquoise-future"
+ARG IMAGE_VENDOR="samuelueluel"
 ARG UBLUE_IMAGE_TAG="stable"
 ARG BASE_IMAGE_NAME="silverblue"
 ARG FEDORA_MAJOR_VERSION="44"
