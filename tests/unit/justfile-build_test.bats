@@ -41,6 +41,8 @@ setup() {
     export STUB_GIT_STATUS=""
     # JSON `podman inspect` returns; the recipe reads .[].Id out of it.
     export STUB_PODMAN_INSPECT='[{"Id":"sha256:deadbeef"}]'
+    # Deterministic repo owner: isolate from fork GITHUB_REPOSITORY_OWNER environment
+    export GITHUB_REPOSITORY_OWNER="projectbluefin"
 
     cat >"${STUB_BIN}/podman" <<'EOF'
 #!/usr/bin/env bash
