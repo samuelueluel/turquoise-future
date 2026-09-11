@@ -41,6 +41,7 @@ jobs:
       registry: ghcr.io/${{ github.repository_owner }}
       source_branch: main
       target_branch: stable
+      request_reviewer: false
       # The release gate resolves the :testing tag (published by main builds)
       # and verifies its cosign signature. Enable the OPTIONAL keyless signing
       # step in build-image.yml for the gate to report release/ready.

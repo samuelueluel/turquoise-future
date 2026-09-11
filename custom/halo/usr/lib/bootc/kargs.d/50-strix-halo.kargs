@@ -1,0 +1,4 @@
+# HP ZBook Ultra G1a Strix Halo (Ryzen AI Max+ 395 / Radeon 8060S)
+amd_pstate=active
+ttm.pages_limit=32505856
+amd_iommu=off

@@ -12,30 +12,32 @@ Instead, you create your own OS repository based on this template, allowing full
 
 ## What Makes this Raptor Different?
 
-Here are the changes from [Base Image Name]. This image is based on [Bluefin/Bazzite/Aurora/etc] and includes these customizations:
+Turquoise is a dedicated daily-driver workstation image for Samuel's **HP ZBook Ultra G1a (AMD Strix Halo / Ryzen AI Max+ 395)**. It is based on **`ghcr.io/ublue-os/base-main:44`** and runs the **Niri** Wayland tiling compositor.
+
+For full package architecture, justifications, and the Two-Tier package boundary, see [PACKAGES.md](PACKAGES.md).
 
 ### Added Packages (Build-time)
 
-- **System packages**: `tmux` and `gum` — tmux is the template's package-manager cache smoke test, and gum provides the interactive prompts used by the default ujust recipes.
+- **Hardware & Kernel**: `scx-scheds` (sched-ext lavd/rusty schedulers), `tuned`, `tuned-ppd`, `ryzenadj` (musl static), `linux-firmware`
+- **Compositor & Display Stack**: `niri`, `greetd`, `gtkgreet`, `cage`, `xwayland-satellite`, `xdg-desktop-portal-gnome`, `xdg-desktop-portal-gtk`
+- **Desktop Shell & Utilities**: `noctalia-shell`, `matugen`, `gpu-screen-recorder`, `kanshi`, `grim`, `slurp`, `wdisplays`
+- **Shell & Terminal**: `ghostty`, `kitty`, `zsh`, `yazi`, `tmux`, `neovim`, `chezmoi`
+- **Host Library Runtime**: `gtk2` (required by Stata MP GUI)
 
 ### Added Applications (Runtime)
 
-- **CLI Tools (Homebrew)**: neovim, helix - [brief explanation]
-- **GUI Apps (Flatpak)**: Spotify, Thunderbird - [brief explanation]
+- **CLI Tools (Homebrew)**: Developer utilities, formatters, and linters (see `custom/brew/`)
+- **GUI Apps (Flatpak)**: Desktop applications (see `custom/flatpaks/`)
 
 ### Removed/Disabled
 
-- List anything removed from base image
+- `power-profiles-daemon` (replaced by TuneD + TuneD-PPD for dynamic LLM accelerator profiles)
 
 ### Configuration Changes
 
-- Any systemd services enabled/disabled
-- Desktop environment changes
-- Other notable modifications
-
-_Last updated: [date]_
-
-> Replace the placeholders above with your actual customizations whenever you add or remove packages, apps, or configuration. This section is what tells users how your image differs from the base.
+- **Kernel Arguments**: `amd_pstate=active`, `ttm.pages_limit=32505856` (~124 GB VRAM limit for Radeon 8060S), `amd_iommu=off`
+- **Services Enabled**: `ac-wakeup-disable.service`, `scx_loader.service`, `tuned.service`, `greetd.service`
+- **Desktop**: Niri Wayland session replacing standard desktop environments
 
 ## Guided Copilot Mode
 
